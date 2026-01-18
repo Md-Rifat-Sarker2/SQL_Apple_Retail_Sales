@@ -61,8 +61,100 @@ The project uses five main tables:
    - `repair_status`: Status of the warranty claim (e.g., Paid Repaired, Warranty Void).
 
 ## Objectives
+**Set up the Library Management System Database**: Set up the Library Management System Database by creating and populating structured tables for branches, employees, members, books, issued status, and return status, ensuring proper relationships and data integrity to support efficient library operations and transaction tracking.
+```sql
+--Drop Table Command
+drop table if exists warranty;
+drop table if exists sales;
+drop table if exists products;
+drop table if exists category;
+drop table if exists stores;
 
-The project is split into three tiers of questions to test SQL skills of increasing complexity:
+--Create Table Command
+--Store Table
+create table stores(
+	Store_ID varchar(5) primary key,
+	Store_Name varchar(30),
+	City varchar(25),
+	Country varchar(25)
+);
+
+--Category Table
+create table category(
+	category_id varchar(10) primary key,
+	category_name varchar(20)
+);
+
+--Product Table
+create table products(
+	Product_ID	varchar(10) primary key,
+	Product_Name varchar(35),
+	Category_ID	varchar(10),
+	Launch_Date	date,
+	Price float,
+	constraint fk_category foreign key (Category_ID) references category(category_id)
+);
+
+--Sales Table
+create table sales(
+	sale_id	varchar(15) primary key,
+	sale_date date,
+	store_id varchar(10),
+	product_id varchar(10),
+	quantity int,
+	constraint fk_store foreign key (store_id) references stores (Store_ID),
+	constraint fk_products foreign key (product_id) references products (Product_ID)
+);
+
+
+create table warranty(
+	claim_id varchar(10) primary key,
+	claim_date date,
+	sale_id	varchar(15),
+	repair_status varchar(15),
+	constraint fk_orders foreign key (sale_id) references sales(sale_id)
+);
+
+-- Successful Message
+select 'Schema Created Successfully.' as Success_Message;
+```
+**Query Optimization Techniques in SQL**: Applied SQL query optimization techniques to improve database performance and efficiency while working with large datasets. This included writing optimized queries, reducing execution time, improving indexing strategies, and ensuring efficient data retrieval. The work demonstrates a strong understanding of performance tuning and best practices essential for scalable and high-performing database systems.
+```sql
+select * from category;
+select * from products;
+select * from sales;
+select * from stores;
+select * from warranty;
+
+-- ----------------------------
+-- Improving Query Permformance
+-- ----------------------------
+
+explain analyze           
+select * from sales
+where product_id = 'P-44';
+--Execution Time : 373.752ms
+--Planning Time : 0.105ms
+
+create index sales_product_id on sales(product_id);
+--After Index
+--Execution Time : 11.204ms
+--Planning Time : 0.159ms
+
+explain analyze
+select * from sales
+where store_id = 'ST-31';
+--Execution Time : 245.050ms
+--Planning Time : 0.106ms
+
+create index sales_store_id on sales(store_id);
+--After Index
+--Execution Time : 12.721ms
+--Planning Time : 0.164ms
+
+create index sales_sale_date on sales(sale_date);
+```
+**The project is split into three tiers of questions to test SQL skills of increasing complexity:**
 
 ### Easy to Medium (10 Questions)
 
