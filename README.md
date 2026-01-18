@@ -529,4 +529,13 @@ This project primarily focuses on developing and showcasing the following SQL sk
 
 By completing this project, I have developed advanced SQL querying skills, enhanced my ability to handle large datasets efficiently, and gained hands-on experience in solving complex data analysis problems that are critical for effective business decision-making. This project has strengthened my portfolio and clearly demonstrates my practical expertise in SQL to potential employers.
 
+## Author - Md Rifat sarker
+
+For more information about me, please connect with following link:
+
+- **FaceBook**: [Profile Link](https://www.facebook.com/md.rifat.sarker.268451/)
+- **Instagram**: [Profile Link](https://www.instagram.com/md_rifat_sarker/)
+- **LinkedIn**: [Profile Link](https://www.linkedin.com/in/mdrifatsarker/)
+
+Thank you for your support, and I look forward to connecting with you!
 ---
